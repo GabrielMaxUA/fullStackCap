@@ -1,0 +1,50 @@
+
+<div id="Gallery" class="m-4 d-flex ">
+  <!-- Nature Section -->
+  <div class="gallery_option text-center">
+    <div class="p-5"><img [src]="nImageUrl" alt="" *ngIf="nImageUrl"></div>
+    
+    <div *ngIf="isUploading" class="loading-icon d-flex justify-content-center align-items-center">
+      <div class="spinner-border text-primary" role="status"></div>
+    </div>
+    <div *ngIf="user?.type === 'admin'" class="filePick m-2">
+      <input type="file" (change)="onFileSelected($event, 'n')" />
+    </div>
+    <a class="text-center" routerLink="/nature">Nature</a>
+    <div class="nText" [innerHTML]="nText"></div>
+    <textarea *ngIf="user?.type === 'admin'" class="text-center" [(ngModel)]="nText"></textarea>
+  </div>
+
+  <!-- Architecture Section -->
+  <div class="gallery_option">
+    <div class="p-5"><img [src]="aImageUrl" alt="" *ngIf="aImageUrl"></div>
+    <div *ngIf="isUploading" class="loading-icon d-flex justify-content-center align-items-center">
+      <div class="spinner-border text-primary" role="status"></div>
+    </div>
+    <div *ngIf="user?.type === 'admin'" class="filePick m-2">
+      <input type="file" (change)="onFileSelected($event, 'a')" />
+    </div>
+    <a class="text-center" routerLink="/architecture">Architecture</a>
+    <div class="aText" [innerHTML]="aText"></div>
+    <textarea *ngIf="user?.type === 'admin'" [(ngModel)]="aText"></textarea>
+  </div>
+
+  <!-- Staged Section -->
+  <div class="gallery_option">
+    <div class="p-5"><img [src]="sImageUrl" alt="" *ngIf="sImageUrl"></div>
+    <div *ngIf="isUploading" class="loading-icon d-flex justify-content-center align-items-center">
+      <div class="spinner-border text-primary" role="status"></div>
+    </div>
+    <div *ngIf="user?.type === 'admin'" class="filePick m-2">
+      <input type="file" (change)="onFileSelected($event, 's')" />
+    </div>
+    <a class="text-center" routerLink="/staged">Staged</a>
+    <div class="sText" [innerHTML]="sText"></div>
+    <textarea *ngIf="user?.type === 'admin'" [(ngModel)]="sText"></textarea>
+  </div>
+</div>
+
+<!-- Single Submit Button -->
+<div *ngIf="user?.type === 'admin'" class="text-center">
+  <button (click)="submitAllChanges()">Submit All Changes</button>
+</div>
